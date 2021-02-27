@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ezeebook-dev",
+  "private_key_id": "7c94458bf7d6cde59bd8693ecbace85be1e0143e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCmI5XzYqkR3gVm\n5ecdfGgHfwS4iEo5TBrHRclMDt/lQd0yccvB6Pa1R1LCVddmI1DZHWCfOOIbFNiU\nJvJFHUfTFdAGmhppev7fXiRL+JPvBf4kRUlV5np7HiYMKazTRhJpg6VkkOulMl1m\n3urehqNG7Q++dp7ZB37Xlz7wscvg/BH07gfl8LGe0/pGgJ2NSl4GpcxWgI7NDT/w\nTdsF54FVit3RCL7dKEf6SBQpXPAASHkQwPEz/trB64oSxJUnBVEzoHgMBjmBJs/H\n3uNk+vBGCPFVRl14QBYu90YptAnluGma6j6zRcC0txWJNPG9kbpqJhLyOnPQJfIY\nXfxtnV3rAgMBAAECggEAA1iKlVI58+ZRiE0gsGvKqrNdi+WHsIbKw+InJCA38mp8\nFDzDr24L9Ph/hC3LATCo4se2XzSs/L0YvG4pSVv3Sxr85CKvShoRtmz4UinSCEIi\ne/oNjDF6YWAQXj/gnNdo4ubM5XIMe5/7k7fdkOJQpVSP89bHa0Lkda00ZtTXq6t4\nLstO3Jgx4iv0CSa6hB4HXGAGWLxEeO+liUvUgJKK75i3lB8vxmdsXsJXfDKXpzOF\n+/V95QelSw3H1DSS8LXum2nwkpk1dBaeGCnSTq3VeAODHVKXNdOufqTKRkq4qSe8\nRPk0MyNJKyPsU+TaQU4WScIX+HVX8v2LZE+eizTaUQKBgQDj1zJBYqYsN8hDkm6I\nOijOsRz6g8pxn2VB5qGC/9VZfJkm3O9EQRztG3uRcWWC2UfvQFZ2E1s3Y5Ouk0xA\nNCXgZfnDfN5/MshvFWLTlp/3aEYp5LjSbrmWr/oiE+eQpPsRIEdqb2cYwVUmaAYY\nAJcJhWMr2qf9NkRk3G2fCCCFVQKBgQC6rCunYOOg52QH1XaAMqYQBEdy33u4j+Wz\nMcg5VFkmzkx/6hqSvYBq45Wd41ba017IZm9u2focxb2PneOBQEnVlODd34cWWcD+\njNercg/OOWOjYT4I4d+ofkMeDnGiTqhreBy87GNi0U1T/ti7eroiw68U6MQwDbMx\n+wyMHYpWPwKBgEKvw+fbZePfV+BfRbbdvv/wWxj/5gsnqk2FoZRkKSAOFg2H8Qg7\nPqovtxU06Y9I5YMjg6r/s10c6ibYuiK4oLVzY41SSRVV2dCZo9lmZt/VR2QPrAD7\no5p1W3MJ/GcbwtiaaAzBGp3mSHP7Un1H/u0se4BkeXLlpVMYKYW4rTwZAoGAaLeE\nlZSInQ6w0qQwoaHH/lwoKIytvs8aL/fRNjfW+ynnSCpvVbnwfAXHPJb3djH0jb7I\n7ApjgBh9Sj9sDGmgAaxOqKhoA2W+Gg2wPoDx1OHkvxYh0qHC8aZCyG2Z2U7+s6rh\nlCmXZyu6kU/5DNK/8BiN8tDQnZRR3cvTMhawL8kCgYBPI6aNvLQTKCSlug+Bb5mf\n4FSyV66vKnLa9bHf2jTcFh85grx7fQuQ3Pnf86MyQWGC9afR1Dc/aVclMjcEoM2a\n82NlkPSTu5LmzKUDPRWAUOjFqe24+ZpOUcowylGdcLGae/Alks2kvxHDrT54UtBi\nW/0l+oeEDL4b2nh4A+OQ9g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "ezeebook-dev@appspot.gserviceaccount.com",
+  "client_id": "111160576466023608322",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ezeebook-dev%40appspot.gserviceaccount.com"
+}
