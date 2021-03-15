@@ -1,6 +1,6 @@
 import express, {Response, Request} from 'express';
 import UsersDataService from '../controllers/users.service';
-import {BaseUser} from '../models/users.interface';
+import {BaseUser, User} from '../models/users.interface';
 
 export const userRouter = express.Router();
 
@@ -43,10 +43,12 @@ userRouter.get("/:id",async (req: Request, res: Response) => {
 
 userRouter.post("/", async (req: Request, res: Response) => {
   try {
-    const baseUser: BaseUser = req.body;
-    const createdAt = (new Date()).toString();
+    debugger;
 
-    const user = {...baseUser,createdAt} 
+    const baseUser: BaseUser = req.body;
+    // createdAt = (new Date()).toString();
+
+    const user = {...baseUser} 
 
     const newUser = await UsersDataService.createUser(user);
 
@@ -60,7 +62,7 @@ userRouter.put("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
 
   try {
-    const userUpdate: BaseUser = req.body; 
+    const userUpdate: User = req.body; 
 
     const existingUser = await UsersDataService.getUser(id);
 
@@ -68,10 +70,12 @@ userRouter.put("/:id", async (req: Request, res: Response) => {
       const updatedUser = await UsersDataService.updateUser(id, userUpdate);
       return res.status(200).json(updatedUser);
     }
+    else {
+      //give not found error 
+    }
+    //const newUser = await UsersDataService.createUser(userUpdate);
 
-    const newUser = await UsersDataService.createUser(userUpdate);
-
-    res.status(201).json(newUser);
+    //res.status(201).json(newUser);
   } catch (e) {
     res.status(500).send(e.message);
   }
