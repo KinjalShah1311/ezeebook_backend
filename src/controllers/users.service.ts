@@ -1,47 +1,53 @@
-import {BaseUser} from '../models/users.interface'
+import { BaseUser, User } from "../models/users.interface";
 
-import app from '../../firebase'
+import app from "../../firebase";
 
 const db = app.database().ref("/users");
 class UsersDataService {
-    getAllUsers() {
-      return db;
-    }
-
-    getUser(key) {
-        return db.child(key);
-    }
-  
-    createUser(user) {
-      return db.push(user);
-    }
-  
-    updateUser(key,value:BaseUser) {
-      return db.child(key).update(value);
-    }
-  
-    deleteUser(key) {
-      return db.child(key).remove();
-    }
-  
-    deleteAllUsers() {
-      return db.remove();
-    }
+  getAllUsers() {
+    return db;
   }
-  
-  export default new UsersDataService();
+
+  getUser(key) {
+    return db.child(key);
+  }
+
+  // use uid from firebase authenticated user and create new document for same uid
+  createUser(baseUser: BaseUser) {
+    //return db.push(user);
+    return app
+      .database()
+      .ref("users/" + baseUser.uid)
+      .set(baseUser);
+  }
+
+  // update user to/update more details from user profile page
+  updateUser(key, value: User) {
+    return db.child(key).update(value);
+  }
+
+  deleteUser(key) {
+    return db.child(key).remove();
+  }
+
+  deleteAllUsers() {
+    return db.remove();
+  }
+}
+
+export default new UsersDataService();
 
 // let users: Users = {
 //     1: {
 //         uid: 1,
 //         firstName: "Tushar",
-        // lastName: "Khatri",
-        // emailAddress: "tusharkhatri56@gmail.com",
-        // password: "12345678",
-        // createdAt: new Date(),
-        // updatedAt: new Date(),
-        // phoneNumber: "1234567890",
-        // imageUrl: "https://cdn.pixabay.com/photo/2017/12/11/15/34/lion-3012515_960_720.jpg"
+// lastName: "Khatri",
+// emailAddress: "tusharkhatri56@gmail.com",
+// password: "12345678",
+// createdAt: new Date(),
+// updatedAt: new Date(),
+// phoneNumber: "1234567890",
+// imageUrl: "https://cdn.pixabay.com/photo/2017/12/11/15/34/lion-3012515_960_720.jpg"
 //     },
 //     2: {
 //         uid: 2,
@@ -61,7 +67,7 @@ class UsersDataService {
 // export const getUser = async (id: number): Promise<User> => users[id];
 
 // export const createUser = async (newUser: BaseUser): Promise<User> => {
-    
+
 //     const uid= new Date().valueOf();
 //     const createdAt = new Date();
 //     const updatedAt = new Date();
@@ -98,4 +104,3 @@ class UsersDataService {
 
 //     delete users[uid];
 // }
-

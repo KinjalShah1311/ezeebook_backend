@@ -24,7 +24,7 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/rooms", roomRouter);
 app.use("/api/rooms", reviewRouter);
-app.use("/api/users", reservationRouter);
+app.use("/api/reservations", reservationRouter);
 app.use("/api/rooms", imageRouter);
 
 app.listen(API_PORT, () => {
