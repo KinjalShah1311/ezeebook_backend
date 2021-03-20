@@ -14,7 +14,6 @@ class UsersDataService {
 
   // use uid from firebase authenticated user and create new document for same uid
   createUser(baseUser: BaseUser) {
-    debugger;
     //return db.push(user);
     return app
       .database()
