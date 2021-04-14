@@ -11,10 +11,6 @@
     "uuid-v4": "^0.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "eslintConfig": {
