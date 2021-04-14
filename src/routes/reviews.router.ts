@@ -11,13 +11,12 @@ reviewRouter.get("/:roomID/reviews",async (req: Request, res: Response) => {
         res.status(404).send("Reviews not found");
     }
     else {
-      res.status(200).send(review.on("value", 
+      review.on("value", 
         function(snapshot) {
-          console.log(snapshot.val());
+          res.status(200).send(snapshot.val());
         }, function (e) {
           console.log("The read failed: " + e);
         })
-      );
     }
   }catch(e) {
     res.status(500).send(e.message);
@@ -51,8 +50,10 @@ reviewRouter.post("/:roomID/reviews/", async (req: Request, res: Response) => {
   try {
     const basereview: BaseReview = req.body;
     const roomID = req.params.roomID;
+    const postedOn = new Date().valueOf();
+    console.log(postedOn);
 
-    const review = {...basereview,roomID}
+    const review = {...basereview,roomID,postedOn}
 
     const newReview = await ReviewsDataService.createReview(review);
 
