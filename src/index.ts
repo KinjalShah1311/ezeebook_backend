@@ -14,7 +14,8 @@ if (!process.env.API_PORT) {
     process.exit(1);
 }
 
-const API_PORT: number = parseInt(process.env.API_PORT as string, 10);
+// const API_PORT: number = parseInt(process.env.API_PORT as string, 10);
+const API_PORT = process.env.API_PORT || 7000;
 
 const app = express();
 
