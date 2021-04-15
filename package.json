@@ -11,11 +11,8 @@
     "uuid-v4": "^0.1.0"
   },
   "scripts": {
-    "start": "node dist/index.js",
-    "postinstall": "tsc",
-    "watch-node": "nodemon dist/index.js",
-    "watch-ts": "tsc -w",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+    "start": "node index.ts",
+    "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "engines": {
     "node": "14.15.3"
