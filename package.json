@@ -11,7 +11,7 @@
     "uuid-v4": "^0.1.0"
   },
   "scripts": {
-    "start": "node index.ts",
+    "start": "node index.js",
     "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "engines": {
