@@ -11,6 +11,7 @@
     "uuid-v4": "^0.1.0"
   },
   "scripts": {
+    "postinstall": "tsc",
     "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "engines": {
