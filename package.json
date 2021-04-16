@@ -10,10 +10,15 @@
     "firebase": "^8.2.7",
     "ts-node": "^9.1.1",
     "uuid-v4": "^0.1.0",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.11",
+    "@types/helmet": "^4.0.0",
+    "@types/node": "^14.14.28"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node --transpile-only src/index.ts",
     "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "engines": {
@@ -37,13 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/cors": "^2.8.10",
-    "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.11",
-    "@types/helmet": "^4.0.0",
-    "@types/node": "^14.14.28",
-    "ts-node-dev": "^1.1.6",
-    "typescript": "^4.1.5"
-  }
+  "devDependencies": {}
 }
