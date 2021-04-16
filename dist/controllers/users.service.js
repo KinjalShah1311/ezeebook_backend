@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var firebase_1 = require("../../firebase");
-var db = firebase_1["default"].database().ref("/users");
+const { firebase, database } = require("../../firebase")
+var db = database.ref("/users");
 var UsersDataService = /** @class */ (function () {
     function UsersDataService() {
     }

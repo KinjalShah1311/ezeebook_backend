@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var firebase_1 = require("../../firebase");
-var db = firebase_1["default"].database().ref("/images");
+const { firebase, database } = require("../../firebase")
+var db = database.ref("/images");
 var ImagesDataService = /** @class */ (function () {
     function ImagesDataService() {
     }

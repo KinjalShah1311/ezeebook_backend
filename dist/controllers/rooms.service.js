@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-var firebase_1 = require("../../firebase");
 // let rooms: Rooms = {
 //     1: {
 //         roomID: 1,
@@ -20,7 +19,8 @@ var firebase_1 = require("../../firebase");
 //         latitude: 43.413714
 //     }
 // }
-var db = firebase_1["default"].database().ref("/rooms");
+const { firebase, database } = require("../../firebase")
+var db = database.ref("/rooms");
 var RoomsDataService = /** @class */ (function () {
     function RoomsDataService() {
     }
