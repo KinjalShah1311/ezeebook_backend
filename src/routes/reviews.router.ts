@@ -5,8 +5,9 @@ import {BaseReview} from '../models/reviews.interface';
 export const reviewRouter = express.Router();
 
 reviewRouter.get("/:roomID/reviews",async (req: Request, res: Response) => {
+  const roomID = req.params.roomID;
   try {
-    const review = await ReviewsDataService.getAllReviews();
+    const review = await ReviewsDataService.getAllReviews(roomID);
     if(!review) {
         res.status(404).send("Reviews not found");
     }
@@ -26,19 +27,19 @@ reviewRouter.get("/:roomID/reviews",async (req: Request, res: Response) => {
 
 reviewRouter.get("/:roomID/reviews/:id",async (req: Request, res: Response) => {
   const id = req.params.id;
+  const roomID = req.params.roomID;
   try {
-    const review = await ReviewsDataService.getReview(id);
+    const review = await ReviewsDataService.getReview(id,roomID);
     if(!review) {
         res.status(404).send("Review not found");
     }
     else {
-        res.status(200).send(review.on("value", 
+        review.on("value", 
         function(snapshot) {
-          console.log(snapshot.val());
+          res.status(200).send(snapshot.val());
         }, function (e) {
-          console.log("The read failed: " + e);
+          res.status(404).send(e);
         })
-      );
     }
   }catch(e) {
     console.log('Error happened: ', e.message);
@@ -57,13 +58,12 @@ reviewRouter.post("/:roomID/reviews/", async (req: Request, res: Response) => {
 
     const newReview = await ReviewsDataService.createReview(review);
 
-    res.status(201).json(newReview.on("value", 
+    newReview.on("value", 
     function(snapshot) {
-      console.log(snapshot.val());
+      res.status(201).send(snapshot.val());
     }, function (e) {
       console.log("The read failed: " + e);
     })
-    );
   } catch (e) {
     res.status(500).send(e.message);
   }
@@ -71,11 +71,11 @@ reviewRouter.post("/:roomID/reviews/", async (req: Request, res: Response) => {
 
 reviewRouter.put("/:roomID/reviews/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
-
+  const roomID = req.params.roomID;
   try {
     const reviewUpdate: BaseReview = req.body;
 
-    const existingReview = await ReviewsDataService.getReview(id);
+    const existingReview = await ReviewsDataService.getReview(id,roomID);
 
     if (!existingReview) {
         const newReview = await ReviewsDataService.createReview(reviewUpdate);

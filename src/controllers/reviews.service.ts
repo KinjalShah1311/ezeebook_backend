@@ -5,11 +5,11 @@ import app from '../../firebase'
 
 const db = app.database().ref("/reviews");
 class ReviewsDataService {
-    getAllReviews() {
+    getAllReviews(roomID) {
       return db;
     }
 
-    getReview(key) {
+    getReview(key,roomID) {
         return db.child(key);
     }
   
