@@ -14,7 +14,7 @@ if (!process.env.API_PORT) {
     process.exit(1);
 }
 
-const API_PORT: number = parseInt(process.env.API_PORT as string, 10);
+const API_PORT: number = parseInt(process.env.API_PORT as string, 10) || 7000;
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use("/api/rooms", reviewRouter);
 app.use("/api/reservations", reservationRouter);
 app.use("/api/rooms", imageRouter);
 
-app.listen(API_PORT, () => {
-    console.log(`Listening on port ${API_PORT}`);
+app.listen(process.env.API_PORT || 7000, () => {
+    console.log(`Listening on port 7000`);
 });
 
