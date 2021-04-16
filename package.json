@@ -19,8 +19,7 @@
     "uuid-v4": "^0.1.0"
   },
   "scripts": {
-    "postinstall": "tsc",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start": "node dist/index.js",
     "dev": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --respawn --pretty --transpile-only src/index.ts"
   },
   "engines": {
