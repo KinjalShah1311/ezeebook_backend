@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es5",
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,7 +16,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/",
+      ],
+    }
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts"
+  ],
 }
