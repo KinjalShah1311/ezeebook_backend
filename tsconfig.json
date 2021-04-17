@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "outDir": "dist",
     "strict": true,
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -15,17 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "noImplicitAny": false,
-    "sourceMap": false,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/",
-      ],
-    }
+    "jsx": "react",
+    "noImplicitAny": false
   },
-  "include": [
-    "src/**/*.ts"
-  ],
+  "include": ["**/*"]
 }
