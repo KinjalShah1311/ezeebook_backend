@@ -1,24 +1,24 @@
 "use strict";
 exports.__esModule = true;
 const { firebase, database } = require("../../firebase")
-var db = database.ref("/reviews");
+var db = database.ref("/rooms");
 var ReviewsDataService = /** @class */ (function () {
     function ReviewsDataService() {
     }
     ReviewsDataService.prototype.getAllReviews = function (roomID) {
-        return db;
+        return db.child(roomID).child("reviews");
     };
     ReviewsDataService.prototype.getReview = function (key, roomID) {
-        return db.child(key);
+        return db.child(roomID).child("reviews").child(key);
     };
-    ReviewsDataService.prototype.createReview = function (review) {
-        return db.push(review);
+    ReviewsDataService.prototype.createReview = function (roomID, review) {
+        return db.child(roomID).child("reviews").push(review);
     };
-    ReviewsDataService.prototype.updateReview = function (key, value) {
-        return db.child(key).update(value);
+    ReviewsDataService.prototype.updateReview = function (roomID, key, value) {
+        return db.child(roomID).child("reviews").child(key).update(value);
     };
-    ReviewsDataService.prototype.deleteReview = function (key) {
-        return db.child(key).remove();
+    ReviewsDataService.prototype.deleteReview = function (roomID, key) {
+        return db.child(roomID).child("reviews").child(key).remove();
     };
     ReviewsDataService.prototype.deleteAllReviews = function () {
         return db.remove();

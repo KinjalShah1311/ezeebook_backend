@@ -50,10 +50,11 @@ exports.__esModule = true;
 exports.reviewRouter = void 0;
 var express_1 = require("express");
 var reviews_service_1 = require("../controllers/reviews.service");
+var rooms_service_1 = require("../controllers/rooms.service");
 exports.reviewRouter = express_1.Router();
 exports.reviewRouter.get("/:roomID/reviews", function (req, res) {
     return __awaiter(void 0, void 0, void 0, function () {
-        var roomID, review, e_1;
+        var roomID, room, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -61,15 +62,21 @@ exports.reviewRouter.get("/:roomID/reviews", function (req, res) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, reviews_service_1["default"].getAllReviews(roomID)];
+                    return [4 /*yield*/, rooms_service_1['default'].getRoom(roomID)];
                 case 2:
-                    review = _a.sent();
-                    if (!review) {
-                        res.status(404).send("Reviews not found");
+                    room = _a.sent();
+                    if (!room) {
+                        res.status(404).send("Room not found");
                     }
                     else {
-                        review.on("value", function (snapshot) {
-                            res.status(200).send(snapshot.val());
+                        room.on("value", function (snapshot) {
+                            const review = snapshot.val().reviews;
+                            if (!review) {
+                                res.status(404).send("No Reviews");
+                            }
+                            else {
+                                res.status(200).send(review);
+                            }
                         }, function (e) {
                             console.log("The read failed: " + e);
                         });
@@ -77,6 +84,7 @@ exports.reviewRouter.get("/:roomID/reviews", function (req, res) {
                     return [3 /*break*/, 4];
                 case 3:
                     e_1 = _a.sent();
+                    //console.log('Error happened: ', e.message);
                     res.status(500).send(e_1.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -120,30 +128,37 @@ exports.reviewRouter.get("/:roomID/reviews/:id", function (req, res) {
 });
 exports.reviewRouter.post("/:roomID/reviews/", function (req, res) {
     return __awaiter(void 0, void 0, void 0, function () {
-        var basereview, roomID, postedOn, review, newReview, e_3;
+        var basereview, roomID, postedOn, existingRoom, roomUpdate, review, newRoom, updatedRoom, e_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
                     basereview = req.body;
                     roomID = req.params.roomID;
                     postedOn = new Date().valueOf();
-                    console.log(postedOn);
-                    review = __assign(__assign({}, basereview), { roomID: roomID, postedOn: postedOn });
-                    return [4 /*yield*/, reviews_service_1["default"].createReview(review)];
+                    review = __assign(__assign({}, basereview), { postedOn: postedOn });
+                    _a.label = 1;
                 case 1:
-                    newReview = _a.sent();
-                    newReview.on("value", function (snapshot) {
-                        res.status(201).send(snapshot.val());
-                    }, function (e) {
-                        console.log("The read failed: " + e);
-                    });
-                    return [3 /*break*/, 3];
+                    _a.trys.push([1, 7, , 8]);
+                    roomUpdate = review;
+                    return [4 /*yield*/, rooms_service_1["default"].getRoom(roomID)];
                 case 2:
+                    existingRoom = _a.sent();
+                    if (!!existingRoom) return [3 /*break*/, 4];
+                    return [4 /*yield*/, rooms_service_1["default"].addReview(roomID, roomUpdate)];
+                case 3:
+                    newRoom = _a.sent();
+                    res.status(201).json(newRoom);
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, rooms_service_1["default"].addReview(roomID, roomUpdate)];
+                case 5:
+                    updatedRoom = _a.sent();
+                    return [2 /*return*/, res.status(200).json(updatedRoom)];
+                case 6: return [3 /*break*/, 8];
+                case 7:
                     e_3 = _a.sent();
                     res.status(500).send(e_3.message);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });
@@ -164,12 +179,12 @@ exports.reviewRouter.put("/:roomID/reviews/:id", function (req, res) {
                 case 2:
                     existingReview = _a.sent();
                     if (!!existingReview) return [3 /*break*/, 4];
-                    return [4 /*yield*/, reviews_service_1["default"].createReview(reviewUpdate)];
+                    return [4 /*yield*/, reviews_service_1["default"].createReview(roomID, reviewUpdate)];
                 case 3:
                     newReview = _a.sent();
                     res.status(201).json(newReview);
                     return [3 /*break*/, 6];
-                case 4: return [4 /*yield*/, reviews_service_1["default"].updateReview(id, reviewUpdate)];
+                case 4: return [4 /*yield*/, reviews_service_1["default"].updateReview(roomID, id, reviewUpdate)];
                 case 5:
                     updatedReview = _a.sent();
                     return [2 /*return*/, res.status(200).json(updatedReview)];
@@ -191,7 +206,8 @@ exports.reviewRouter["delete"]("/:roomID/reviews/:id", function (req, res) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     id = req.params.id;
-                    return [4 /*yield*/, reviews_service_1["default"].deleteReview(id)];
+                    roomID = req.params.roomID;
+                    return [4 /*yield*/, reviews_service_1["default"].deleteReview(roomID, id)];
                 case 1:
                     _a.sent();
                     res.sendStatus(204);

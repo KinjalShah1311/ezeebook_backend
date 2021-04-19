@@ -23,6 +23,6 @@ app.use("/api/rooms", rooms_router_1.roomRouter);
 app.use("/api/rooms", reviews_router_1.reviewRouter);
 app.use("/api/reservations", reservations_router_1.reservationRouter);
 app.use("/api/rooms", images_router_1.imageRouter);
-app.listen(process.env.API_PORT || 7000, function () {
-    console.log("Listening on port 7000");
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

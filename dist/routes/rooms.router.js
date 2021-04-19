@@ -54,11 +54,11 @@ exports.roomRouter.get("/", function (req, res) {
                         res.status(404).send("Room not found");
                     }
                     else {
-                        res.status(200).send(room.on("value", function (snapshot) {
-                            console.log(snapshot.val());
+                        room.on("value", function (snapshot) {
+                            res.status(200).send(snapshot.val());
                         }, function (e) {
                             console.log("The read failed: " + e);
-                        }));
+                        });
                     }
                     return [3 /*break*/, 3];
                 case 2:
@@ -87,12 +87,11 @@ exports.roomRouter.get("/:id", function (req, res) {
                         res.status(404).send("Room not found");
                     }
                     else {
-                        res.status(200)
-                            .send(room.on("value", function (snapshot) {
-                                console.log(snapshot.val());
-                            }, function (e) {
-                                console.log("The read failed: " + e);
-                            }));
+                        room.on("value", function (snapshot) {
+                            res.status(200).send(snapshot.val());
+                        }, function (e) {
+                            console.log("The read failed: " + e);
+                        });
                     }
                     return [3 /*break*/, 4];
                 case 3:

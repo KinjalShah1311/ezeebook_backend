@@ -42,6 +42,9 @@ var RoomsDataService = /** @class */ (function () {
     RoomsDataService.prototype.deleteAllRooms = function () {
         return db.remove();
     };
+    RoomsDataService.prototype.addReview = function (roomID, review) {
+        return db.child(roomID).child("reviews").push(review);
+    }
     return RoomsDataService;
 }());
 exports["default"] = new RoomsDataService();

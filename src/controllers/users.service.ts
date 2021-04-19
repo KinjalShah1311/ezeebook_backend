@@ -1,8 +1,8 @@
 import { BaseUser, User } from "../models/users.interface";
 
-import app from "../../firebase";
+const { firebase, database } = require("../../firebase")
 
-const db = app.database().ref("/users");
+const db = database.ref("/users");
 class UsersDataService {
   getAllUsers() {
     return db;
@@ -15,8 +15,7 @@ class UsersDataService {
   // use uid from firebase authenticated user and create new document for same uid
   createUser(baseUser: BaseUser) {
     //return db.push(user);
-    return app
-      .database()
+    return database
       .ref("users/" + baseUser.uid)
       .set(baseUser);
   }
