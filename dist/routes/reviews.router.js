@@ -69,10 +69,10 @@ exports.reviewRouter.get("/:roomID/reviews", function (req, res) {
                         res.status(404).send("Room not found");
                     }
                     else {
-                        room.on("value", function (snapshot) {
+                        room.once("value", function (snapshot) {
                             const review = snapshot.val().reviews;
                             if (!review) {
-                                res.status(404).send("No Reviews");
+                                console.log("No review");
                             }
                             else {
                                 res.status(200).send(review);
@@ -84,8 +84,8 @@ exports.reviewRouter.get("/:roomID/reviews", function (req, res) {
                     return [3 /*break*/, 4];
                 case 3:
                     e_1 = _a.sent();
-                    //console.log('Error happened: ', e.message);
-                    res.status(500).send(e_1.message);
+                    console.log('Error happened: ', e_1.message);
+                    //res.status(500).send(e_1.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
@@ -110,7 +110,7 @@ exports.reviewRouter.get("/:roomID/reviews/:id", function (req, res) {
                         res.status(404).send("Review not found");
                     }
                     else {
-                        review.on("value", function (snapshot) {
+                        review.once("value", function (snapshot) {
                             res.status(200).send(snapshot.val());
                         }, function (e) {
                             res.status(404).send(e);
@@ -163,7 +163,7 @@ exports.reviewRouter.post("/:roomID/reviews/", function (req, res) {
         });
     });
 });
-exports.reviewRouter.put("/:roomID/reviews/:id", function (req, res) {
+exports.reviewRouter.put("/:roomID/reviews/", function (req, res) {
     return __awaiter(void 0, void 0, void 0, function () {
         var id, roomID, reviewUpdate, existingReview, newReview, updatedReview, e_4;
         return __generator(this, function (_a) {
