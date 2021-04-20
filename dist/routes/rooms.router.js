@@ -54,7 +54,7 @@ exports.roomRouter.get("/", function (req, res) {
                         res.status(404).send("Room not found");
                     }
                     else {
-                        room.on("value", function (snapshot) {
+                        room.once("value", function (snapshot) {
                             res.status(200).send(snapshot.val());
                         }, function (e) {
                             console.log("The read failed: " + e);
@@ -87,7 +87,7 @@ exports.roomRouter.get("/:id", function (req, res) {
                         res.status(404).send("Room not found");
                     }
                     else {
-                        room.on("value", function (snapshot) {
+                        room.once("value", function (snapshot) {
                             res.status(200).send(snapshot.val());
                         }, function (e) {
                             console.log("The read failed: " + e);
@@ -115,7 +115,7 @@ exports.roomRouter.post("/", function (req, res) {
                     return [4 /*yield*/, rooms_service_1["default"].createRoom(room)];
                 case 1:
                     newRoom = _a.sent();
-                    res.status(201).json(newRoom.on("value", function (snapshot) {
+                    res.status(201).json(newRoom.once("value", function (snapshot) {
                         console.log(snapshot.val());
                     }, function (e) {
                         console.log("The read failed: " + e);
