@@ -14,7 +14,7 @@ var UsersDataService = /** @class */ (function () {
     // use uid from firebase authenticated user and create new document for same uid
     UsersDataService.prototype.createUser = function (baseUser) {
         //return db.push(user);
-        return firebase_1["default"]
+        return firebase["default"]
             .database()
             .ref("users/" + baseUser.uid)
             .set(baseUser);
